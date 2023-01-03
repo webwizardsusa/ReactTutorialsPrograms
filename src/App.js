@@ -1,23 +1,33 @@
-import logo from './logo.svg';
+import { useState,useEffect, useRef,usePrevious } from "react";
 import './App.css';
+import ReducerExample from './ReducerExample'
 
 function App() {
+
+  const [count, setCount] = useState(0);
+ 
+  const prevCount = usePrevious(count);
+  console.log(count);
+  
+
+  function usePrevious(value) {
+    const ref = useRef();
+    console.log(ref);
+    useEffect(() => {
+      ref.current = value;
+    }, [value]);
+    
+    console.log(ref.current);
+    return ref.current;
+  }
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div>
+      <h1>
+        Now: {count} ----- before: {prevCount}
+      </h1>
+      <button onClick={() => setCount(count + 1)}>Increment</button>
+
+      <ReducerExample />
     </div>
   );
 }
