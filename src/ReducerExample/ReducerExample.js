@@ -41,7 +41,7 @@ export default ({ name }) => {
 
   return (
     <>
-      <h1>Hello {name}!</h1>
+      <h1>Hello {name}!!!</h1>
       Count: {count}
       <br />
       <button onClick={()=>increment()}>increment</button>
